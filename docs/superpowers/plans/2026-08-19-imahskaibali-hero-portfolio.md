@@ -20,7 +20,7 @@
 - **Animation accessibility:** MUST respect `prefers-reduced-motion` (render the object static). R3F pauses the loop when the tab is hidden automatically — do not add extra visibility handling.
 - **Verification model (deliberate, not an oversight):** this is a static, logic-free portfolio page. The automated gate for every task is `npm run build` (it type-checks all files and fails on broken imports) plus a visual render check via `npm run dev`. **No unit-test framework is added** — introducing Vitest/Jest for a page with zero branching logic is over-engineering (YAGNI). Do not add a test runner.
 - **Icons:** use `lucide-react`. Do NOT hand-author brand SVG paths and do NOT add any other icon package.
-- **Commits:** one commit per task, message ends with `Co-Authored-By: Claude <noreply@anthropic.com>`.
+- **Commits:** one commit per task. No `Co-Authored-By` trailer in any commit message (user rule).
 
 ---
 
@@ -64,8 +64,7 @@ Expected: build succeeds with the default page. (This is the baseline gate — a
 ```bash
 git add -A
 git commit -m "chore: scaffold Next.js app with three.js and icon deps
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 ```
 
 ---
@@ -124,8 +123,7 @@ Expected: build succeeds (the file is type-checked even though nothing imports i
 ```bash
 git add lib/content.ts
 git commit -m "feat: add placeholder content module
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 ```
 
 ---
@@ -206,8 +204,7 @@ Expected: build succeeds.
 ```bash
 git add app/layout.tsx app/globals.css
 git commit -m "feat: dark root layout shell with metadata from content module
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 ```
 
 ---
@@ -313,8 +310,7 @@ Expected: build succeeds. (The component is client-only and not yet imported, bu
 ```bash
 git add components/Scene.tsx
 git commit -m "feat: reactive three.js wireframe scene with reduced-motion support
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 ```
 
 ---
@@ -439,8 +435,7 @@ Open `http://localhost:3000`. Confirm: dark background; wordmark top-left; headl
 ```bash
 git add app/page.tsx
 git commit -m "feat: hero page with CTA, socials, and layered 3d scene
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 ```
 
 ---
@@ -502,6 +497,5 @@ Then stop the dev server.
 ```bash
 git add public/resume.pdf
 git commit -m "feat: add placeholder resume asset
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 ```
