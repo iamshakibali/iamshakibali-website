@@ -32,7 +32,7 @@ const LEVEL_CLASSES = [
   "bg-green-500 dark:bg-green-400/60",
 ];
 
-export function GitHubGraph() {
+export function GitHubGraph({ compact = false }: { compact?: boolean }) {
   const [grid, setGrid] = useState<number[][]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -43,15 +43,20 @@ export function GitHubGraph() {
 
   if (!mounted) return <div className="h-[125px]" />;
 
-  return (
-    <div className="space-y-3">
-      <div className="flex items-center gap-2">
-        <span className="text-xs text-neutral-500">GitHub Activity</span>
-      </div>
+  const cellSize = compact ? "h-1.5 w-1.5" : "h-2.5 w-2.5";
+  const gapSize = compact ? "gap-[2px]" : "gap-[3px]";
 
-      <div className="flex gap-[3px]">
+  return (
+    <div className={compact ? "" : "space-y-3"}>
+      {!compact && (
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-neutral-500">GitHub Activity</span>
+        </div>
+      )}
+
+      <div className={`flex ${gapSize}`}>
         {grid.map((week, wi) => (
-          <div key={wi} className="flex flex-col gap-[3px]">
+          <div key={wi} className={`flex flex-col ${gapSize}`}>
             {week.map((level, di) => (
               <motion.div
                 key={`${wi}-${di}`}
@@ -62,25 +67,27 @@ export function GitHubGraph() {
                   delay: (wi * 7 + di) * 0.002,
                   ease: "easeOut",
                 }}
-                className={`h-2.5 w-2.5 rounded-[3px] ${LEVEL_CLASSES[level]}`}
+                className={`${cellSize} rounded-[2px] ${LEVEL_CLASSES[level]}`}
               />
             ))}
           </div>
         ))}
       </div>
 
-      <div className="flex items-center gap-1.5 text-xs text-neutral-500">
-        <span>Less</span>
-        <div className="flex gap-[3px]">
-          {[0, 1, 2, 3, 4].map((l) => (
-            <div
-              key={l}
-              className={`h-2.5 w-2.5 rounded-[3px] ${LEVEL_CLASSES[l]}`}
-            />
-          ))}
+      {!compact && (
+        <div className="flex items-center gap-1.5 text-xs text-neutral-500">
+          <span>Less</span>
+          <div className={`flex ${gapSize}`}>
+            {[0, 1, 2, 3, 4].map((l) => (
+              <div
+                key={l}
+                className={`h-2.5 w-2.5 rounded-[3px] ${LEVEL_CLASSES[l]}`}
+              />
+            ))}
+          </div>
+          <span>More</span>
         </div>
-        <span>More</span>
-      </div>
+      )}
     </div>
   );
 }
