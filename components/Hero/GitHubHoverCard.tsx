@@ -27,12 +27,12 @@ export function GitHubHoverCard() {
         </p>
       </div>
       <div className="flex w-full flex-col pt-[12px]">
-        <div className="grid w-full grid-cols-12 gap-[3px]">
+        <div className="grid w-full grid-cols-12 gap-[2.5px]">
           {GRID.flatMap((row) =>
             row.split(" ").map((color, i) => (
               <div
                 key={`${row}-${i}`}
-                className="size-[14px] rounded-[3px] sm:size-[15px]"
+                className="size-[11px] rounded-[2px]"
                 style={{ background: color }}
               />
             )),
