@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { ThemeToggle } from "@/components/motion/theme-toggle";
 import { EmojiReaction } from "@/components/motion/emoji-reaction";
 import { useCoordinates } from "@/components/Hero/CoordinateTracker";
@@ -15,6 +15,7 @@ export function HeaderBar() {
   const [logoHovered, setLogoHovered] = useState(false);
   const [pointerOffset, setPointerOffset] = useState(0);
   const [time, setTime] = useState<string | null>(null);
+  const reduce = useReducedMotion() ?? false;
   const logoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,9 +52,19 @@ export function HeaderBar() {
   }
 
   return (
-    <header className="flex w-full items-center justify-between px-6 py-4 md:px-10">
+    <motion.header
+      className="flex w-full items-center justify-between px-6 py-4 md:px-10"
+      initial={reduce ? false : { opacity: 0, y: -10, filter: "blur(6px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+    >
       {/* Left: Emoji reaction + Logo with avatar hover */}
-      <div className="flex items-center gap-3">
+      <motion.div
+        className="flex items-center gap-3"
+        initial={reduce ? false : { opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.08 }}
+      >
         <EmojiReaction size="sm" align="left" />
         <div
           ref={logoRef}
@@ -101,10 +112,15 @@ export function HeaderBar() {
             )}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
 
       {/* Right: Timer + Coordinates + Theme toggle */}
-      <div className="flex h-8 items-center gap-5">
+      <motion.div
+        className="flex h-8 items-center gap-5"
+        initial={reduce ? false : { opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.16 }}
+      >
         <div className="hidden items-center gap-3 font-mono text-[10px] text-neutral-400 md:flex">
           <span suppressHydrationWarning>{time ?? "00:00:00"}</span>
           <span className="opacity-30">—</span>
@@ -119,7 +135,7 @@ export function HeaderBar() {
           className="flex size-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-neutral-200 hover:text-foreground dark:hover:bg-white/10"
           iconClassName="size-4"
         />
-      </div>
-    </header>
+      </motion.div>
+    </motion.header>
   );
 }
