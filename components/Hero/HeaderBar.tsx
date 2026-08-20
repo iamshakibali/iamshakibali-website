@@ -1,6 +1,7 @@
 "use client";
 
 import { ThemeToggle } from "@/components/motion/theme-toggle";
+import { EmojiReaction } from "@/components/motion/emoji-reaction";
 import { useCoordinates } from "@/components/Hero/CoordinateTracker";
 
 export function HeaderBar() {
@@ -8,13 +9,16 @@ export function HeaderBar() {
 
   return (
     <header className="flex w-full items-center justify-between px-6 py-4 md:px-10">
-      {/* Left: Logo */}
-      <a
-        href="/"
-        className="flex h-8 items-center text-sm font-medium tracking-tight"
-      >
-        iamshakibali
-      </a>
+      {/* Left: Logo + Emoji reaction */}
+      <div className="flex items-center gap-3">
+        <a
+          href="/"
+          className="flex h-8 items-center text-sm font-medium tracking-tight"
+        >
+          iamshakibali
+        </a>
+        <EmojiReaction size="sm" align="left" />
+      </div>
 
       {/* Right: Coordinates + Theme toggle */}
       <div className="flex h-8 items-center gap-5">
