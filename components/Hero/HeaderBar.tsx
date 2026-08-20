@@ -40,8 +40,8 @@ export function HeaderBar() {
                   <Image
                     src="/avatar.png"
                     alt="Shakib Ali"
-                    width={220}
-                    height={224}
+                    width={320}
+                    height={326}
                     className="rounded-xl"
                   />
                 </div>
