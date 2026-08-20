@@ -1,23 +1,54 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 import { ThemeToggle } from "@/components/motion/theme-toggle";
 import { EmojiReaction } from "@/components/motion/emoji-reaction";
 import { useCoordinates } from "@/components/Hero/CoordinateTracker";
 
 export function HeaderBar() {
   const { coords } = useCoordinates();
+  const [logoHovered, setLogoHovered] = useState(false);
 
   return (
     <header className="flex w-full items-center justify-between px-6 py-4 md:px-10">
-      {/* Left: Emoji reaction + Logo */}
+      {/* Left: Emoji reaction + Logo with avatar hover */}
       <div className="flex items-center gap-3">
         <EmojiReaction size="sm" align="left" />
-        <a
-          href="/"
-          className="flex h-8 items-center text-sm font-medium tracking-tight"
+        <div
+          className="relative flex h-8 items-center"
+          onMouseEnter={() => setLogoHovered(true)}
+          onMouseLeave={() => setLogoHovered(false)}
         >
-          iamshakibali
-        </a>
+          <a
+            href="/"
+            className="relative z-10 text-sm font-medium tracking-tight"
+          >
+            iamshakibali
+          </a>
+          <AnimatePresence>
+            {logoHovered && (
+              <motion.div
+                initial={{ opacity: 0, y: -8, scale: 0.92 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.92 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="absolute left-0 top-full z-20 mt-4"
+              >
+                <div className="rounded-2xl border-8 border-foreground/10">
+                  <Image
+                    src="/avatar.png"
+                    alt="Shakib Ali"
+                    width={220}
+                    height={224}
+                    className="rounded-xl"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Right: Coordinates + Theme toggle */}
