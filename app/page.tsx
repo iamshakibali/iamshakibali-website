@@ -122,11 +122,11 @@ function HeroContent() {
             <AnimatePresence>
               {githubHovered && (
                 <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                  initial={{ opacity: 0, y: 8, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.96 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
-                  className="absolute bottom-full left-1/2 z-20 mb-3 -translate-x-1/2"
+                  className="absolute left-1/2 top-full z-20 mt-3 -translate-x-1/2"
                 >
                   <GitHubHoverCard />
                 </motion.div>
