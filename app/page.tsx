@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { CoordinateProvider, useCoordinates } from "@/components/Hero/CoordinateTracker";
 import { GitHubHoverCard } from "@/components/Hero/GitHubHoverCard";
@@ -8,9 +8,14 @@ import { HeaderBar } from "@/components/Hero/HeaderBar";
 import { ButtonLink } from "@/components/motion/button";
 import { TextScramble } from "@/components/motion/text-scramble";
 
+const GH_CARD_W = 290;
+const GH_CARD_HALF = GH_CARD_W / 2;
+
 function HeroContent() {
   const { handleMouseMove } = useCoordinates();
   const [githubHovered, setGithubHovered] = useState(false);
+  const [ghPointerOffset, setGhPointerOffset] = useState(0);
+  const ghWrapperRef = useRef<HTMLSpanElement>(null);
 
   return (
     <div
@@ -63,14 +68,20 @@ function HeroContent() {
           >
             shakibaliuix@proton.me
             <span className="flex pl-[6px]">
-              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
-                <img
-                  src="/icons/arrow-up-right.svg"
-                  alt=""
-                  width={9}
-                  height={9}
+              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-white">
+                <svg
+                  viewBox="0 0 9 9"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                   className="size-full"
-                />
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M0.646 8.354C0.451 8.158 0.451 7.842 0.646 7.647L7.293 1H3C2.724 1 2.5 0.776 2.5 0.5S2.724 0 3 0H8.5C8.633 0 8.76 0.053 8.854 0.146S9 0.367 9 0.5V6C9 6.276 8.776 6.5 8.5 6.5S8 6.276 8 6V1.707L1.354 8.354C1.158 8.549 0.842 8.549 0.646 8.354Z"
+                    fill="currentColor"
+                  />
+                </svg>
               </span>
             </span>
           </ButtonLink>
@@ -83,20 +94,45 @@ function HeroContent() {
           >
             X
             <span className="flex pl-[6px]">
-              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
-                <img
-                  src="/icons/arrow-up-right.svg"
-                  alt=""
-                  width={9}
-                  height={9}
+              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-white">
+                <svg
+                  viewBox="0 0 9 9"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                   className="size-full"
-                />
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M0.646 8.354C0.451 8.158 0.451 7.842 0.646 7.647L7.293 1H3C2.724 1 2.5 0.776 2.5 0.5S2.724 0 3 0H8.5C8.633 0 8.76 0.053 8.854 0.146S9 0.367 9 0.5V6C9 6.276 8.776 6.5 8.5 6.5S8 6.276 8 6V1.707L1.354 8.354C1.158 8.549 0.842 8.549 0.646 8.354Z"
+                    fill="currentColor"
+                  />
+                </svg>
               </span>
             </span>
           </ButtonLink>
           <span
+            ref={ghWrapperRef}
             className="relative inline-flex"
-            onMouseEnter={() => setGithubHovered(true)}
+            onMouseEnter={(e) => {
+              if (!ghWrapperRef.current) return;
+              const rect = ghWrapperRef.current.getBoundingClientRect();
+              const clamped = Math.min(
+                Math.max(e.clientX, GH_CARD_HALF + 12),
+                window.innerWidth - GH_CARD_HALF - 12,
+              );
+              setGhPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
+              setGithubHovered(true);
+            }}
+            onMouseMove={(e) => {
+              if (!ghWrapperRef.current) return;
+              const rect = ghWrapperRef.current.getBoundingClientRect();
+              const clamped = Math.min(
+                Math.max(e.clientX, GH_CARD_HALF + 12),
+                window.innerWidth - GH_CARD_HALF - 12,
+              );
+              setGhPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
+            }}
             onMouseLeave={() => setGithubHovered(false)}
           >
             <ButtonLink
@@ -108,25 +144,36 @@ function HeroContent() {
             >
               GitHub
               <span className="flex pl-[6px]">
-                <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
-                  <img
-                    src="/icons/arrow-up-right.svg"
-                    alt=""
-                    width={9}
-                    height={9}
+                <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-white">
+                  <svg
+                    viewBox="0 0 9 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                     className="size-full"
-                  />
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M0.646 8.354C0.451 8.158 0.451 7.842 0.646 7.647L7.293 1H3C2.724 1 2.5 0.776 2.5 0.5S2.724 0 3 0H8.5C8.633 0 8.76 0.053 8.854 0.146S9 0.367 9 0.5V6C9 6.276 8.776 6.5 8.5 6.5S8 6.276 8 6V1.707L1.354 8.354C1.158 8.549 0.842 8.549 0.646 8.354Z"
+                      fill="currentColor"
+                    />
+                  </svg>
                 </span>
               </span>
             </ButtonLink>
             <AnimatePresence>
               {githubHovered && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className="absolute left-1/2 top-full z-20 mt-3 -translate-x-1/2"
+                  initial={{ opacity: 0, y: 16, filter: "blur(12px)", x: ghPointerOffset }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", x: ghPointerOffset }}
+                  exit={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+                  transition={{
+                    opacity: { duration: 0.2, ease: "easeOut" },
+                    y: { duration: 0.2, ease: "easeOut" },
+                    filter: { duration: 0.24, ease: "easeOut" },
+                    x: { type: "spring", stiffness: 600, damping: 32 },
+                  }}
+                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-3"
                 >
                   <GitHubHoverCard />
                 </motion.div>
@@ -142,14 +189,20 @@ function HeroContent() {
           >
             Linkedin
             <span className="flex pl-[6px]">
-              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
-                <img
-                  src="/icons/arrow-up-right.svg"
-                  alt=""
-                  width={9}
-                  height={9}
+              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-white">
+                <svg
+                  viewBox="0 0 9 9"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                   className="size-full"
-                />
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M0.646 8.354C0.451 8.158 0.451 7.842 0.646 7.647L7.293 1H3C2.724 1 2.5 0.776 2.5 0.5S2.724 0 3 0H8.5C8.633 0 8.76 0.053 8.854 0.146S9 0.367 9 0.5V6C9 6.276 8.776 6.5 8.5 6.5S8 6.276 8 6V1.707L1.354 8.354C1.158 8.549 0.842 8.549 0.646 8.354Z"
+                    fill="currentColor"
+                  />
+                </svg>
               </span>
             </span>
           </ButtonLink>
