@@ -8,8 +8,13 @@ export function HeaderBar() {
 
   return (
     <header className="flex w-full items-center justify-between px-6 py-4 md:px-10">
+      {/* Left: Logo */}
+      <a href="/" className="text-sm font-medium tracking-tight">
+        iamshakibali
+      </a>
+
       {/* Right: Coordinates + Theme toggle */}
-      <div className="flex w-full items-center justify-end gap-5">
+      <div className="flex items-center gap-5">
         <span className="hidden font-mono text-[10px] text-neutral-400 md:inline">
           X:{String(coords.x).padStart(4, "\u00A0")} - Y:{String(coords.y).padStart(4, "\u00A0")}
         </span>
