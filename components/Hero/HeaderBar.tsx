@@ -8,28 +8,10 @@ export function HeaderBar() {
 
   return (
     <header className="flex w-full items-center justify-between px-6 py-4 md:px-10">
-      {/* Left: Name */}
-      <div className="text-sm font-medium">Iamshakibali</div>
-
-      {/* Right: Nav + Coordinates + Theme toggle */}
-      <div className="flex items-center gap-5">
-        <nav className="hidden items-center gap-4 text-sm text-neutral-500 md:flex">
-          <a
-            href="#"
-            className="transition-colors hover:text-foreground"
-          >
-            Playground
-          </a>
-          <a
-            href="#"
-            className="transition-colors hover:text-foreground"
-          >
-            Contribution
-          </a>
-        </nav>
+      {/* Right: Coordinates + Theme toggle */}
+      <div className="flex w-full items-center justify-end gap-5">
         <span className="hidden font-mono text-xs text-neutral-400 md:inline">
-          {String(coords.x).padStart(4, "\u00A0")} ·{" "}
-          {String(coords.y).padStart(4, "\u00A0")}
+          X:{String(coords.x).padStart(4, "\u00A0")} - Y:{String(coords.y).padStart(4, "\u00A0")}
         </span>
         <ThemeToggle
           variant="circle-blur"
