@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { CoordinateProvider, useCoordinates } from "@/components/Hero/CoordinateTracker";
+import { GitHubHoverCard } from "@/components/Hero/GitHubHoverCard";
 import { HeaderBar } from "@/components/Hero/HeaderBar";
 import { ButtonLink } from "@/components/motion/button";
 import { TextScramble } from "@/components/motion/text-scramble";
 
 function HeroContent() {
   const { handleMouseMove } = useCoordinates();
+  const [githubHovered, setGithubHovered] = useState(false);
 
   return (
     <div
@@ -90,26 +94,45 @@ function HeroContent() {
               </span>
             </span>
           </ButtonLink>
-          <ButtonLink
-            variant="pill"
-            size="pill"
-            href="https://github.com/iamshakibali"
-            target="_blank"
-            rel="noopener noreferrer"
+          <span
+            className="relative inline-flex"
+            onMouseEnter={() => setGithubHovered(true)}
+            onMouseLeave={() => setGithubHovered(false)}
           >
-            GitHub
-            <span className="flex pl-[6px]">
-              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
-                <img
-                  src="/icons/arrow-up-right.svg"
-                  alt=""
-                  width={9}
-                  height={9}
-                  className="size-full"
-                />
+            <ButtonLink
+              variant="pill"
+              size="pill"
+              href="https://github.com/iamshakibali"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+              <span className="flex pl-[6px]">
+                <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
+                  <img
+                    src="/icons/arrow-up-right.svg"
+                    alt=""
+                    width={9}
+                    height={9}
+                    className="size-full"
+                  />
+                </span>
               </span>
-            </span>
-          </ButtonLink>
+            </ButtonLink>
+            <AnimatePresence>
+              {githubHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="absolute bottom-full left-1/2 z-20 mb-3 -translate-x-1/2"
+                >
+                  <GitHubHoverCard />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </span>
           <ButtonLink
             variant="pill"
             size="pill"
