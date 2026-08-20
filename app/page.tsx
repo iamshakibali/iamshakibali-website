@@ -51,31 +51,84 @@ function HeroContent() {
           Today, I design and build digital products at Aureus, while contributing to open source and exploring AI-native ways to build.
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-wrap gap-1">
           <ButtonLink
-            variant="outline"
-            size="md"
-            href="mailto:hello@iamshakibali.com"
+            variant="pill"
+            size="pill"
+            href="mailto:shakibaliuix@proton.me"
           >
-            Email me
+            shakibaliuix@proton.me
+            <span className="flex pl-[6px]">
+              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
+                <img
+                  src="/icons/arrow-up-right.svg"
+                  alt=""
+                  width={9}
+                  height={9}
+                  className="size-full"
+                />
+              </span>
+            </span>
           </ButtonLink>
           <ButtonLink
-            variant="outline"
-            size="md"
-            href="https://github.com/iamshakibali"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </ButtonLink>
-          <ButtonLink
-            variant="outline"
-            size="md"
+            variant="pill"
+            size="pill"
             href="https://x.com/iamshakibali"
             target="_blank"
             rel="noopener noreferrer"
           >
             X
+            <span className="flex pl-[6px]">
+              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
+                <img
+                  src="/icons/arrow-up-right.svg"
+                  alt=""
+                  width={9}
+                  height={9}
+                  className="size-full"
+                />
+              </span>
+            </span>
+          </ButtonLink>
+          <ButtonLink
+            variant="pill"
+            size="pill"
+            href="https://github.com/iamshakibali"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+            <span className="flex pl-[6px]">
+              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
+                <img
+                  src="/icons/arrow-up-right.svg"
+                  alt=""
+                  width={9}
+                  height={9}
+                  className="size-full"
+                />
+              </span>
+            </span>
+          </ButtonLink>
+          <ButtonLink
+            variant="pill"
+            size="pill"
+            href="https://linkedin.com/in/iamshakibali"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Linkedin
+            <span className="flex pl-[6px]">
+              <span className="size-[9px] shrink-0 text-[#8F8F8F] dark:text-zinc-400">
+                <img
+                  src="/icons/arrow-up-right.svg"
+                  alt=""
+                  width={9}
+                  height={9}
+                  className="size-full"
+                />
+              </span>
+            </span>
           </ButtonLink>
         </div>
         </div>

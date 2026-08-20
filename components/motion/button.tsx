@@ -18,8 +18,8 @@ import { EASE_OUT, SPRING_PRESS } from "@/lib/ease";
 import { useHoverCapable } from "@/lib/hooks/use-hover-capable";
 import { cn } from "@/lib/utils";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
-export type ButtonSize = "sm" | "md" | "lg" | "icon";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "outline" | "pill";
+export type ButtonSize = "sm" | "md" | "lg" | "icon" | "pill";
 
 export interface ButtonProps extends Omit<HTMLMotionProps<"button">, "children"> {
   variant?: ButtonVariant;
@@ -39,10 +39,11 @@ export interface ButtonLinkProps extends Omit<HTMLMotionProps<"a">, "children"> 
 type Ripple = { id: number; x: number; y: number; size: number };
 
 const VARIANT_CLASS: Record<ButtonVariant, string> = {
-  primary: "bg-primary text-primary-foreground hover:bg-primary/90",
+  primary: "bg-foreground text-background hover:bg-foreground/90",
   secondary: "border border-border bg-card text-foreground hover:border-border",
   ghost: "text-muted-foreground hover:text-foreground hover:bg-primary/5",
   outline: "border border-border bg-transparent text-foreground hover:bg-primary/5",
+  pill: "bg-[#e5e5e5] text-[#171717] hover:bg-[#d9d9d9] dark:bg-[#2a2a2a] dark:text-zinc-100 dark:hover:bg-[#333]",
 };
 
 const SIZE_CLASS: Record<ButtonSize, string> = {
@@ -50,6 +51,7 @@ const SIZE_CLASS: Record<ButtonSize, string> = {
   md: "h-10 px-5 text-sm gap-2 rounded-full",
   lg: "h-12 px-6 text-base gap-2 rounded-full",
   icon: "h-8 w-8 rounded-lg",
+  pill: "h-auto px-[12px] py-[4px] text-[14px] leading-[20px] tracking-[-0.28px] gap-0 rounded-full font-normal",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
