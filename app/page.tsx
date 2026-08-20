@@ -1,16 +1,36 @@
 "use client";
 
-import { ThemeToggle } from "@/components/motion/theme-toggle";
+import { CoordinateProvider, useCoordinates } from "@/components/Hero/CoordinateTracker";
+import { HeaderBar } from "@/components/Hero/HeaderBar";
+import { HeroText } from "@/components/Hero/HeroText";
+import { ActionButtons } from "@/components/Hero/ActionButtons";
+import { GitHubGraph } from "@/components/Hero/GitHubGraph";
+
+function HeroContent() {
+  const { handleMouseMove } = useCoordinates();
+
+  return (
+    <div
+      className="relative flex min-h-screen flex-col bg-background text-foreground"
+      onMouseMove={handleMouseMove}
+    >
+      <HeaderBar />
+
+      <div className="flex flex-1 flex-col justify-center px-6 pb-20 pt-12 md:px-10">
+        <div className="max-w-2xl space-y-10">
+          <HeroText />
+          <ActionButtons />
+          <GitHubGraph />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background text-foreground transition-colors">
-      <ThemeToggle
-        variant="circle-blur"
-        start="top-right"
-        className="absolute right-6 top-6 z-10 size-9 rounded-full text-neutral-400 hover:text-foreground hover:bg-neutral-200 dark:hover:bg-white/10"
-        iconClassName="size-5"
-      />
-    </main>
+    <CoordinateProvider>
+      <HeroContent />
+    </CoordinateProvider>
   );
 }
