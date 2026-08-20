@@ -3,6 +3,7 @@ import "./globals.css";
 import { content } from "@/lib/content";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const overusedGrotesk = localFont({
+  src: "./fonts/OverusedGrotesk-Medium.ttf",
+  weight: "500",
+  variable: "--font-overused-grotesk",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: content.name,
   description: content.subtext,
@@ -23,7 +31,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${overusedGrotesk.variable}`}>
       <body className="antialiased font-sans">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
