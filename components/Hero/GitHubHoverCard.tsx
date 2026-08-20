@@ -10,7 +10,7 @@ const GRID: string[] = [
 
 export function GitHubHoverCard() {
   return (
-    <div className="flex w-[260px] flex-col items-start rounded-[12px] bg-white p-[16px] shadow-[0_8px_32px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.08)] dark:bg-zinc-900 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+    <div className="flex h-[146px] w-[290px] flex-col items-start rounded-[12px] bg-white p-[16px] shadow-[0_8px_32px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.08)] dark:bg-zinc-900 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
       <div className="flex w-full items-center justify-between">
         <span className="size-[20px] shrink-0 text-[#525252] dark:text-zinc-400">
           <img
