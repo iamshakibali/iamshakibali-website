@@ -187,7 +187,7 @@ function HeroContent() {
             >
               X
               <span className="flex pl-[6px]">
-                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
+                <span className="size-[15px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -254,7 +254,7 @@ function HeroContent() {
             >
               GitHub
               <span className="flex pl-[6px]">
-                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
+                <span className="size-[15px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -321,7 +321,7 @@ function HeroContent() {
             >
               Linkedin
               <span className="flex pl-[6px]">
-                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
+                <span className="size-[15px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
