@@ -187,7 +187,7 @@ function HeroContent() {
             >
               X
               <span className="flex pl-[6px]">
-                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
+                <span className="size-[11px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 9 9"
                     fill="none"
@@ -195,7 +195,7 @@ function HeroContent() {
                     className="size-full"
                   >
                     <path
-                      d="M1 7.5L8 0.5M8 0.5H3.2M8 0.5V5.3"
+                      d="M1 7.5L8 0.5M8 0.5H3.5M8 0.5V5"
                       stroke="currentColor"
                       strokeWidth="1"
                       strokeLinecap="round"
@@ -259,7 +259,7 @@ function HeroContent() {
             >
               GitHub
               <span className="flex pl-[6px]">
-                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
+                <span className="size-[11px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 9 9"
                     fill="none"
@@ -267,7 +267,7 @@ function HeroContent() {
                     className="size-full"
                   >
                     <path
-                      d="M1 7.5L8 0.5M8 0.5H3.2M8 0.5V5.3"
+                      d="M1 7.5L8 0.5M8 0.5H3.5M8 0.5V5"
                       stroke="currentColor"
                       strokeWidth="1"
                       strokeLinecap="round"
@@ -331,7 +331,7 @@ function HeroContent() {
             >
               Linkedin
               <span className="flex pl-[6px]">
-                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
+                <span className="size-[11px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 9 9"
                     fill="none"
@@ -339,7 +339,7 @@ function HeroContent() {
                     className="size-full"
                   >
                     <path
-                      d="M1 7.5L8 0.5M8 0.5H3.2M8 0.5V5.3"
+                      d="M1 7.5L8 0.5M8 0.5H3.5M8 0.5V5"
                       stroke="currentColor"
                       strokeWidth="1"
                       strokeLinecap="round"
