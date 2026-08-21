@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/motion/theme-toggle";
 import { EmojiReaction } from "@/components/motion/emoji-reaction";
 import { useCoordinates } from "@/components/Hero/CoordinateTracker";
 
-const CARD_W = 244;
+const CARD_W = 200;
 const CARD_HALF = CARD_W / 2;
 const HORIZ_PAD = 12;
 
@@ -98,12 +98,12 @@ export function HeaderBar() {
                 }}
                 className="pointer-events-none absolute left-0 top-full z-20 mt-[-2px]"
               >
-                <div className="h-[248px] w-[244px] shrink-0 overflow-hidden rounded-2xl border-8 border-white shadow-2xl shadow-black/20 dark:border-neutral-800">
+                <div className="h-[203px] w-[200px] shrink-0 overflow-hidden rounded-2xl border-8 border-white shadow-2xl shadow-black/20 dark:border-neutral-800">
                   <img
                     src="/avatar.gif"
                     alt="Shakib Ali"
-                    width={244}
-                    height={248}
+                    width={200}
+                    height={203}
                     className="h-full w-full rounded-xl object-cover"
                     draggable={false}
                   />

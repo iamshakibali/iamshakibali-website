@@ -12,7 +12,7 @@ export function XHoverCard() {
             alt="Shakib Ali"
             width={64}
             height={64}
-            className="size-full scale-[1.75] object-cover object-[58%_22%]"
+            className="size-full scale-[1.45] object-cover object-[58%_22%]"
           />
         </div>
         <div className="shrink-0 rounded-full bg-black px-[16px] py-[10px] dark:bg-white">
