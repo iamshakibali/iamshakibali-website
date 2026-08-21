@@ -33,6 +33,14 @@ function HeroContent() {
   const xWrapperRef = useRef<HTMLDivElement>(null);
   const liWrapperRef = useRef<HTMLDivElement>(null);
 
+  // single source of truth — left-0 anchored like HeaderBar, no width/2 drift
+  const getOffset = (e: React.MouseEvent, ref: React.RefObject<HTMLDivElement | null>) => {
+    if (!ref.current) return 0;
+    const r = ref.current.getBoundingClientRect();
+    const clamped = Math.min(Math.max(e.clientX, GH_CARD_HALF + 12), window.innerWidth - GH_CARD_HALF - 12);
+    return clamped - r.left - GH_CARD_HALF;
+  };
+
   return (
     <div
       className="relative flex min-h-screen flex-col bg-background text-foreground"
@@ -157,25 +165,8 @@ function HeroContent() {
             transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.6 } as any}
             ref={xWrapperRef as any}
             className="relative inline-flex"
-            onMouseEnter={(e) => {
-              if (!xWrapperRef.current) return;
-              const rect = xWrapperRef.current.getBoundingClientRect();
-              const clamped = Math.min(
-                Math.max(e.clientX, GH_CARD_HALF + 12),
-                window.innerWidth - GH_CARD_HALF - 12,
-              );
-              setXPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
-              setXHovered(true);
-            }}
-            onMouseMove={(e) => {
-              if (!xWrapperRef.current) return;
-              const rect = xWrapperRef.current.getBoundingClientRect();
-              const clamped = Math.min(
-                Math.max(e.clientX, GH_CARD_HALF + 12),
-                window.innerWidth - GH_CARD_HALF - 12,
-              );
-              setXPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
-            }}
+            onMouseEnter={(e) => { setXPointerOffset(getOffset(e, xWrapperRef)); setXHovered(true); }}
+            onMouseMove={(e) => setXPointerOffset(getOffset(e, xWrapperRef))}
             onMouseLeave={() => setXHovered(false)}
           >
             <ButtonLink
@@ -212,7 +203,7 @@ function HeroContent() {
                     filter: { duration: 0.24, ease: "easeOut" },
                     x: { type: "spring", stiffness: 600, damping: 32 },
                   }}
-                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-3"
+                  className="pointer-events-none absolute left-0 top-full z-20 mt-3"
                 >
                   <XHoverCard />
                 </motion.div>
@@ -224,25 +215,8 @@ function HeroContent() {
             transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.6 } as any}
             ref={ghWrapperRef as any}
             className="relative inline-flex"
-            onMouseEnter={(e) => {
-              if (!ghWrapperRef.current) return;
-              const rect = ghWrapperRef.current.getBoundingClientRect();
-              const clamped = Math.min(
-                Math.max(e.clientX, GH_CARD_HALF + 12),
-                window.innerWidth - GH_CARD_HALF - 12,
-              );
-              setGhPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
-              setGithubHovered(true);
-            }}
-            onMouseMove={(e) => {
-              if (!ghWrapperRef.current) return;
-              const rect = ghWrapperRef.current.getBoundingClientRect();
-              const clamped = Math.min(
-                Math.max(e.clientX, GH_CARD_HALF + 12),
-                window.innerWidth - GH_CARD_HALF - 12,
-              );
-              setGhPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
-            }}
+            onMouseEnter={(e) => { setGhPointerOffset(getOffset(e, ghWrapperRef)); setGithubHovered(true); }}
+            onMouseMove={(e) => setGhPointerOffset(getOffset(e, ghWrapperRef))}
             onMouseLeave={() => setGithubHovered(false)}
           >
             <ButtonLink
@@ -279,7 +253,7 @@ function HeroContent() {
                     filter: { duration: 0.24, ease: "easeOut" },
                     x: { type: "spring", stiffness: 600, damping: 32 },
                   }}
-                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-3"
+                  className="pointer-events-none absolute left-0 top-full z-20 mt-3"
                 >
                   <GitHubHoverCard />
                 </motion.div>
@@ -291,25 +265,8 @@ function HeroContent() {
             transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.6 } as any}
             ref={liWrapperRef as any}
             className="relative inline-flex"
-            onMouseEnter={(e) => {
-              if (!liWrapperRef.current) return;
-              const rect = liWrapperRef.current.getBoundingClientRect();
-              const clamped = Math.min(
-                Math.max(e.clientX, GH_CARD_HALF + 12),
-                window.innerWidth - GH_CARD_HALF - 12,
-              );
-              setLiPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
-              setLinkedInHovered(true);
-            }}
-            onMouseMove={(e) => {
-              if (!liWrapperRef.current) return;
-              const rect = liWrapperRef.current.getBoundingClientRect();
-              const clamped = Math.min(
-                Math.max(e.clientX, GH_CARD_HALF + 12),
-                window.innerWidth - GH_CARD_HALF - 12,
-              );
-              setLiPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
-            }}
+            onMouseEnter={(e) => { setLiPointerOffset(getOffset(e, liWrapperRef)); setLinkedInHovered(true); }}
+            onMouseMove={(e) => setLiPointerOffset(getOffset(e, liWrapperRef))}
             onMouseLeave={() => setLinkedInHovered(false)}
           >
             <ButtonLink
@@ -346,7 +303,7 @@ function HeroContent() {
                     filter: { duration: 0.24, ease: "easeOut" },
                     x: { type: "spring", stiffness: 600, damping: 32 },
                   }}
-                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-3"
+                  className="pointer-events-none absolute left-0 top-full z-20 mt-3"
                 >
                   <LinkedInHoverCard />
                 </motion.div>
