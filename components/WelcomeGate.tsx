@@ -5,10 +5,8 @@ import { AnimatePresence } from "motion/react";
 import { WelcomeLoader } from "@/components/WelcomeLoader";
 import { WelcomeDoneContext } from "@/components/WelcomeDoneContext";
 
-const KEY = "hasSeenWelcome";
-
 export function WelcomeGate({ children }: { children: React.ReactNode }) {
-  // testing: always show on every load; revert to sessionStorage check after approval
+  // intentional: the welcome loader plays on every page load
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -22,12 +20,7 @@ export function WelcomeGate({ children }: { children: React.ReactNode }) {
     };
   }, [show]);
 
-  const handleComplete = () => {
-    try {
-      sessionStorage.setItem(KEY, "1");
-    } catch {}
-    setShow(false);
-  };
+  const handleComplete = () => setShow(false);
 
   return (
     <WelcomeDoneContext.Provider value={!show}>
