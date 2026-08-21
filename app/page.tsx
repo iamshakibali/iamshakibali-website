@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { CoordinateProvider, useCoordinates } from "@/components/Hero/CoordinateTracker";
 import { GitHubHoverCard } from "@/components/Hero/GitHubHoverCard";
+import { XHoverCard } from "@/components/Hero/XHoverCard";
+import { LinkedInHoverCard } from "@/components/Hero/LinkedInHoverCard";
 import { HeaderBar } from "@/components/Hero/HeaderBar";
 import { Button, ButtonLink } from "@/components/motion/button";
 import { ActionSwapCascadeText, ActionSwapIcon } from "@/components/motion/action-swap";
@@ -21,9 +23,15 @@ function HeroContent() {
   const { handleMouseMove } = useCoordinates();
   const [githubHovered, setGithubHovered] = useState(false);
   const [ghPointerOffset, setGhPointerOffset] = useState(0);
+  const [xHovered, setXHovered] = useState(false);
+  const [xPointerOffset, setXPointerOffset] = useState(0);
+  const [linkedInHovered, setLinkedInHovered] = useState(false);
+  const [liPointerOffset, setLiPointerOffset] = useState(0);
   const [mailCopied, setMailCopied] = useState(false);
   const reduce = useReducedMotion() ?? false;
-  const ghWrapperRef = useRef<HTMLSpanElement>(null);
+  const ghWrapperRef = useRef<HTMLDivElement>(null);
+  const xWrapperRef = useRef<HTMLDivElement>(null);
+  const liWrapperRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
@@ -114,9 +122,9 @@ function HeroContent() {
                         className="size-full"
                       >
                         <path
-                          d="M1.5 4.5L3.6 6.6L7.5 2.1"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
+                        d="M1.5 4.5L3.6 6.6L7.5 2.1"
+                        stroke="currentColor"
+                        strokeWidth="1"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
@@ -128,14 +136,14 @@ function HeroContent() {
                         height="24"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="size-full"
-                      >
-                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="size-full"
+                    >
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
                       </svg>
                     )}
                   </ActionSwapIcon>
@@ -144,7 +152,32 @@ function HeroContent() {
               <ActionSwapCascadeText value={mailCopied ? "Copied!" : "shakibaliuix@proton.me"} />
             </Button>
           </motion.div>
-          <motion.div layout transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.6 }}>
+          <motion.div
+            layout="position"
+            transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.6 } as any}
+            ref={xWrapperRef as any}
+            className="relative inline-flex"
+            onMouseEnter={(e) => {
+              if (!xWrapperRef.current) return;
+              const rect = xWrapperRef.current.getBoundingClientRect();
+              const clamped = Math.min(
+                Math.max(e.clientX, GH_CARD_HALF + 12),
+                window.innerWidth - GH_CARD_HALF - 12,
+              );
+              setXPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
+              setXHovered(true);
+            }}
+            onMouseMove={(e) => {
+              if (!xWrapperRef.current) return;
+              const rect = xWrapperRef.current.getBoundingClientRect();
+              const clamped = Math.min(
+                Math.max(e.clientX, GH_CARD_HALF + 12),
+                window.innerWidth - GH_CARD_HALF - 12,
+              );
+              setXPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
+            }}
+            onMouseLeave={() => setXHovered(false)}
+          >
             <ButtonLink
               variant="pill"
               size="pill"
@@ -154,7 +187,7 @@ function HeroContent() {
             >
               X
               <span className="flex pl-[6px]">
-                <span className="size-[11px] shrink-0 text-[#8F8F8F] dark:text-white">
+                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 9 9"
                     fill="none"
@@ -171,6 +204,24 @@ function HeroContent() {
                 </span>
               </span>
             </ButtonLink>
+            <AnimatePresence>
+              {xHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 16, filter: "blur(12px)", x: xPointerOffset }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", x: xPointerOffset }}
+                  exit={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+                  transition={{
+                    opacity: { duration: 0.2, ease: "easeOut" },
+                    y: { duration: 0.2, ease: "easeOut" },
+                    filter: { duration: 0.24, ease: "easeOut" },
+                    x: { type: "spring", stiffness: 600, damping: 32 },
+                  }}
+                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-3"
+                >
+                  <XHoverCard />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
           <motion.div
             layout="position"
@@ -207,7 +258,7 @@ function HeroContent() {
             >
               GitHub
               <span className="flex pl-[6px]">
-                <span className="size-[11px] shrink-0 text-[#8F8F8F] dark:text-white">
+                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 9 9"
                     fill="none"
@@ -243,7 +294,32 @@ function HeroContent() {
               )}
             </AnimatePresence>
           </motion.div>
-          <motion.div layout transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.6 }}>
+          <motion.div
+            layout="position"
+            transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.6 } as any}
+            ref={liWrapperRef as any}
+            className="relative inline-flex"
+            onMouseEnter={(e) => {
+              if (!liWrapperRef.current) return;
+              const rect = liWrapperRef.current.getBoundingClientRect();
+              const clamped = Math.min(
+                Math.max(e.clientX, GH_CARD_HALF + 12),
+                window.innerWidth - GH_CARD_HALF - 12,
+              );
+              setLiPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
+              setLinkedInHovered(true);
+            }}
+            onMouseMove={(e) => {
+              if (!liWrapperRef.current) return;
+              const rect = liWrapperRef.current.getBoundingClientRect();
+              const clamped = Math.min(
+                Math.max(e.clientX, GH_CARD_HALF + 12),
+                window.innerWidth - GH_CARD_HALF - 12,
+              );
+              setLiPointerOffset(clamped - rect.left - rect.width / 2 - GH_CARD_HALF);
+            }}
+            onMouseLeave={() => setLinkedInHovered(false)}
+          >
             <ButtonLink
               variant="pill"
               size="pill"
@@ -253,7 +329,7 @@ function HeroContent() {
             >
               Linkedin
               <span className="flex pl-[6px]">
-                <span className="size-[11px] shrink-0 text-[#8F8F8F] dark:text-white">
+                <span className="size-[13px] shrink-0 text-[#171717] dark:text-white">
                   <svg
                     viewBox="0 0 9 9"
                     fill="none"
@@ -270,6 +346,24 @@ function HeroContent() {
                 </span>
               </span>
             </ButtonLink>
+            <AnimatePresence>
+              {linkedInHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 16, filter: "blur(12px)", x: liPointerOffset }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", x: liPointerOffset }}
+                  exit={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+                  transition={{
+                    opacity: { duration: 0.2, ease: "easeOut" },
+                    y: { duration: 0.2, ease: "easeOut" },
+                    filter: { duration: 0.24, ease: "easeOut" },
+                    x: { type: "spring", stiffness: 600, damping: 32 },
+                  }}
+                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-3"
+                >
+                  <LinkedInHoverCard />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </motion.div>
         </div>

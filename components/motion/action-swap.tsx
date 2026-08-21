@@ -86,8 +86,8 @@ export function ActionSwapText({
             exit: { opacity: 0, y: -6 },
           };
     return (
-      <span className={cn("relative inline-flex items-center overflow-hidden", className)}>
-        <span className="invisible whitespace-pre" aria-hidden="true">
+      <span className={cn("relative inline-flex items-center overflow-visible pr-[2px]", className)}>
+        <span className="invisible whitespace-pre pr-[2px]" aria-hidden="true">
           {value}
         </span>
         <span className="sr-only">{value}</span>
@@ -111,8 +111,8 @@ export function ActionSwapText({
   const chars = value.split("");
 
   return (
-    <span className={cn("relative inline-flex items-center overflow-hidden", className)}>
-      <span className="invisible whitespace-pre" aria-hidden="true">
+    <span className={cn("relative inline-flex items-center overflow-visible pr-[2px]", className)}>
+      <span className="invisible whitespace-pre pr-[2px]" aria-hidden="true">
         {value}
       </span>
       <span className="sr-only">{value}</span>
