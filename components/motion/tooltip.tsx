@@ -281,7 +281,7 @@ export function Tooltip({
                     exit="exit"
                     style={{ transformOrigin: transformOrigin[side] }}
                     className={cn(
-                      "block whitespace-nowrap rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground shadow-lg",
+                      "block whitespace-nowrap rounded-full bg-foreground px-2.5 py-1 text-xs font-medium text-background shadow-lg",
                       className,
                     )}
                   >
