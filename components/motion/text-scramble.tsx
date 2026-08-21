@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 const DEFAULT_GLYPHS = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&@$?/";
@@ -23,15 +23,8 @@ export function TextScramble({
 }: TextScrambleProps) {
   const reduce = useReducedMotion() ?? false;
   const [display, setDisplay] = useState(text);
-  const mounted = useRef(false);
 
   useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-      setDisplay(text);
-      return;
-    }
-
     if (reduce || !glyphs) {
       setDisplay(text);
       return;
