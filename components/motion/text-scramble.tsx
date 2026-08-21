@@ -65,7 +65,7 @@ export function TextScramble({
 
   return (
     <span
-      className={cn("inline-block whitespace-pre", className)}
+      className={cn("whitespace-pre-wrap break-words", className)}
       style={style}
     >
       <span className="sr-only">{text}</span>
