@@ -12,6 +12,7 @@ export interface TextScrambleProps {
   glyphs?: string;
   className?: string;
   style?: CSSProperties;
+  active?: boolean;
 }
 
 export function TextScramble({
@@ -20,12 +21,13 @@ export function TextScramble({
   glyphs = DEFAULT_GLYPHS,
   className,
   style,
+  active = true,
 }: TextScrambleProps) {
   const reduce = useReducedMotion() ?? false;
   const [display, setDisplay] = useState(text);
 
   useEffect(() => {
-    if (reduce || !glyphs) {
+    if (!active || reduce || !glyphs) {
       setDisplay(text);
       return;
     }
@@ -61,7 +63,7 @@ export function TextScramble({
 
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
-  }, [duration, glyphs, reduce, text]);
+  }, [active, duration, glyphs, reduce, text]);
 
   return (
     <span
