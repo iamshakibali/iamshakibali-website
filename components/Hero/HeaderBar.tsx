@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { ThemeToggle } from "@/components/motion/theme-toggle";
 import { EmojiReaction } from "@/components/motion/emoji-reaction";
+import { Tooltip } from "@/components/motion/tooltip";
 import { useCoordinates } from "@/components/Hero/CoordinateTracker";
 
 const CARD_W = 200;
@@ -65,7 +66,11 @@ export function HeaderBar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut", delay: 0.08 }}
       >
-        <EmojiReaction size="sm" align="left" />
+        <Tooltip content="React" side="bottom">
+          <span className="inline-flex">
+            <EmojiReaction size="sm" align="left" />
+          </span>
+        </Tooltip>
         <div
           ref={logoRef}
           className="relative flex h-8 items-center"
@@ -129,12 +134,14 @@ export function HeaderBar() {
             {String(coords.y).padStart(4, "\u00A0")}
           </span>
         </div>
-        <ThemeToggle
-          variant="circle-blur"
-          start="top-right"
-          className="flex size-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-neutral-200 hover:text-foreground dark:hover:bg-white/10"
-          iconClassName="size-4"
-        />
+        <Tooltip content="Toggle theme" side="bottom">
+          <ThemeToggle
+            variant="circle-blur"
+            start="top-right"
+            className="flex size-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-neutral-200 hover:text-foreground dark:hover:bg-white/10"
+            iconClassName="size-4"
+          />
+        </Tooltip>
       </motion.div>
     </motion.header>
   );
