@@ -195,10 +195,11 @@ function HeroContent() {
                     className="size-full"
                   >
                     <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M0.646 8.354C0.451 8.158 0.451 7.842 0.646 7.647L7.293 1H3C2.724 1 2.5 0.776 2.5 0.5S2.724 0 3 0H8.5C8.633 0 8.76 0.053 8.854 0.146S9 0.367 9 0.5V6C9 6.276 8.776 6.5 8.5 6.5S8 6.276 8 6V1.707L1.354 8.354C1.158 8.549 0.842 8.549 0.646 8.354Z"
-                      fill="currentColor"
+                      d="M1 7.5L8 0.5M8 0.5H3.2M8 0.5V5.3"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
@@ -266,10 +267,11 @@ function HeroContent() {
                     className="size-full"
                   >
                     <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M0.646 8.354C0.451 8.158 0.451 7.842 0.646 7.647L7.293 1H3C2.724 1 2.5 0.776 2.5 0.5S2.724 0 3 0H8.5C8.633 0 8.76 0.053 8.854 0.146S9 0.367 9 0.5V6C9 6.276 8.776 6.5 8.5 6.5S8 6.276 8 6V1.707L1.354 8.354C1.158 8.549 0.842 8.549 0.646 8.354Z"
-                      fill="currentColor"
+                      d="M1 7.5L8 0.5M8 0.5H3.2M8 0.5V5.3"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
@@ -337,10 +339,11 @@ function HeroContent() {
                     className="size-full"
                   >
                     <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M0.646 8.354C0.451 8.158 0.451 7.842 0.646 7.647L7.293 1H3C2.724 1 2.5 0.776 2.5 0.5S2.724 0 3 0H8.5C8.633 0 8.76 0.053 8.854 0.146S9 0.367 9 0.5V6C9 6.276 8.776 6.5 8.5 6.5S8 6.276 8 6V1.707L1.354 8.354C1.158 8.549 0.842 8.549 0.646 8.354Z"
-                      fill="currentColor"
+                      d="M1 7.5L8 0.5M8 0.5H3.2M8 0.5V5.3"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
