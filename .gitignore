@@ -42,3 +42,9 @@ next-env.d.ts
 
 # superpowers workspace
 .superpowers/
+
+# local dev/AI tooling (kept local, not for the public repo)
+.commandcode/
+AGENTS.md
+CLAUDE.md
+/docs/
