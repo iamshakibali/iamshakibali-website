@@ -1,31 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shakib Ali
 
-## Getting Started
+**Product Designer & Design Engineer** — I design and build digital products end to end.
 
-First, run the development server:
+🌐 **[iamshakibali.pro.bd](https://iamshakibali.pro.bd)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## About
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I'm Shakib — Co-Founder & Product Design Lead at [Aureus](https://aureus.design), previously at Screens Design. I work at the intersection of **product design and engineering**, using Figma and AI coding agents to turn ideas into functional products and prototypes.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Alongside client work, I create [YouTube videos](https://www.youtube.com/@Iamshakibali) to help and inspire fellow creatives, and contribute to open source across UI, APIs, macOS tooling, and developer tools — including projects like [pin-top](https://github.com/iamshakibali/pin-top), a macOS menu-bar utility for keeping any window always-on-top.
 
-## Learn More
+## This Site
 
-To learn more about Next.js, take a look at the following resources:
+My personal portfolio — designed and built from scratch as one continuous experience.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Multilingual welcome loader** — greetings crossfade through English, French, Bengali, Chinese, and Japanese before handing off to the hero
+- **Signature handoff** — the signature animates out of the loader and lands in the hero
+- **Scramble headline** with a live **X/Y coordinate tracker** and session timer
+- **Cursor-follow hover cards** for GitHub, LinkedIn, and X with spring physics
+- **Theme toggle** built on the CSS View Transition API (circle-blur reveal), persisted across visits
+- **Custom motion system** — spring buttons with ripple, tooltips, emoji reactions, text scramble
+- **Fill-only design language** — solid fills, zero borders anywhere
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
+| Layer      | Tools                                                        |
+| ---------- | ------------------------------------------------------------ |
+| Framework  | Next.js (App Router, static export), TypeScript              |
+| Styling    | Tailwind CSS, CSS View Transitions, next-themes              |
+| Motion     | Custom spring-physics component library                      |
+| Typography | Geist Sans & Mono, Overused Grotesk                          |
+| Hosting    | GitHub Pages, custom domain via GitHub Actions               |
+
+## Elsewhere
+
+- [GitHub](https://github.com/iamshakibali)
+- [YouTube](https://www.youtube.com/@Iamshakibali)
+- [Instagram](https://www.instagram.com/iamshakibali)
+- [Facebook](https://www.facebook.com/iamshakibali)
+- [LinkedIn](https://www.linkedin.com/in/imahskaibali)
+- [X](https://x.com/imahskaibali)
+- [Dribbble](https://dribbble.com/imahskaibali)
+
+---
+
+© 2026 Shakib Ali
